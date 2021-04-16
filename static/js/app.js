@@ -74,6 +74,29 @@ d3.json("samples.json").then((data) => {
     demoBody.append("p").text(`bbtype: ${chosen_metadata['bbtype']}`);
     demoBody.append("p").text(`wfreq: ${chosen_metadata['wfreq']}`);
 
+    // Graph wfreq on gauge
+    var trace3 = {
+        domain: {x: [0,1], y: [0,1]},
+        value: metadata[0]['wfreq'],
+        title: "Belly Button Washing Frequency",
+        type: 'indicator',
+        mode: 'gauge',
+        gauge: {
+            axis: {range: [null, 9]},
+            steps: [
+                {range: [0, 1], color: "lightgray"},
+                {range: [1, 9], color: "green"}
+            ]
+        }
+    };
+
+    var data3 = [trace3];
+
+    // var layout3 = {
+    //     width:
+    // };
+
+    Plotly.newPlot("gauge", data3);
 
   });
 
