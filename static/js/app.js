@@ -16,9 +16,44 @@ d3.json("samples.json").then((data) => {
         selection.text(name);
     });
 
-    // Retrieve the selected individual's ID number
+    // Plot charts using first ID number
     
+    // Plot bar graph of OTD
+    // Convert OTU IDs into strings for labels
+    var otu_id_str = samples[0]['otu_ids'].slice(0,10).map(id => ('OTU ' + id));
 
+    var trace1 = {
+        x: samples[0]['sample_values'].slice(0,10),
+        y: otu_id_str,
+        orientation: 'h',
+        type: 'bar',
+        text: samples[0]['otu_labels'].slice(0,10)
+    };
+
+    console.log(trace1);
+
+    var data1 = [trace1];
+
+    var layout1 = {
+        yaxis: {autorange: 'reversed'}
+    };
+
+    Plotly.newPlot('bar', data1, layout1);
+
+
+
+
+  });
+
+
+// Function called by DOM changes
+function getData() {
+    var dropdownMenu = d3.select("#selDataset");
+    // Assign the value of the dropdown menu option to a variable
+    var nameID = dropdownMenu.property("value");
+    console.log(nameID);
+    
+    // Update graphs based on selected value
     // Create the horizontal bar graph
 
         // Store data into trace
@@ -33,20 +68,5 @@ d3.json("samples.json").then((data) => {
         // Need data/trace, layout, div id
 
 
-
-  });
-
-
-// On change to the DOM, call getData()
-d3.selectAll("#selDataset").on("change", getData);
-
-
-// Function called by DOM changes
-function getData() {
-    var dropdownMenu = d3.select("#selDataset");
-    // Assign the value of the dropdown menu option to a variable
-    var dataset = dropdownMenu.property("value");
-    
-    // Update graphs based on selected value
 
 }
