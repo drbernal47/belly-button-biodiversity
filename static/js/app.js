@@ -60,6 +60,20 @@ d3.json("samples.json").then((data) => {
 
     Plotly.newPlot('bubble', data2, layout2);
 
+    // Print metadata
+    var chosen_metadata = metadata[0];
+
+    console.log(chosen_metadata);
+
+    var demoBody = d3.select("#sample-metadata");
+    demoBody.append("p").text(`id: ${chosen_metadata['id']}`);
+    demoBody.append("p").text(`ethnicity: ${chosen_metadata['ethnicity']}`);
+    demoBody.append("p").text(`gender: ${chosen_metadata['gender']}`);
+    demoBody.append("p").text(`age: ${chosen_metadata['age']}`);
+    demoBody.append("p").text(`location: ${chosen_metadata['location']}`);
+    demoBody.append("p").text(`bbtype: ${chosen_metadata['bbtype']}`);
+    demoBody.append("p").text(`wfreq: ${chosen_metadata['wfreq']}`);
+
 
   });
 
