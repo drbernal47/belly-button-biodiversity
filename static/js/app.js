@@ -18,7 +18,7 @@ d3.json("samples.json").then((data) => {
 
     // Plot charts using first ID number
     
-    // Plot bar graph of OTD
+    // Plot bar graph of OTU
     // Convert OTU IDs into strings for labels
     var otu_id_str = samples[0]['otu_ids'].slice(0,10).map(id => ('OTU ' + id));
 
@@ -40,7 +40,25 @@ d3.json("samples.json").then((data) => {
 
     Plotly.newPlot('bar', data1, layout1);
 
+    // Plot bubble chart of all OTU samples
+    var trace2 = {
+        x: samples[0]['otu_ids'],
+        y: samples[0]['sample_values'],
+        mode: 'markers',
+        marker: {
+            size: samples[0]['sample_values'],
+            color: samples[0]['otu_ids']
+        },
+        text: samples[0]['otu_labels']
+    };
 
+    var data2 = [trace2];
+
+    var layout2 = {
+        xaxis: {title: "OTU ID"}
+    };
+
+    Plotly.newPlot('bubble', data2, layout2);
 
 
   });
