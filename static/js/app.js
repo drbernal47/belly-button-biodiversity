@@ -74,29 +74,37 @@ d3.json("samples.json").then((data) => {
     demoBody.append("p").text(`bbtype: ${chosen_metadata['bbtype']}`);
     demoBody.append("p").text(`wfreq: ${chosen_metadata['wfreq']}`);
 
-    // // Graph wfreq on gauge
-    // var trace3 = {
-    //     domain: {x: [0,1], y: [0,1]},
-    //     value: metadata[0]['wfreq'],
-    //     title: "Belly Button Washing Frequency",
-    //     type: 'indicator',
-    //     mode: 'gauge',
-    //     gauge: {
-    //         axis: {range: [null, 9]},
-    //         steps: [
-    //             {range: [0, 1], color: "lightgray"},
-    //             {range: [1, 9], color: "green"}
-    //         ]
-    //     }
+    // Graph wfreq on gauge
+    var trace3 = {
+        domain: {x: [0,1], y: [0,1]},
+        value: metadata[0]['wfreq'],
+        title: "Weekly Navel Washing Frequency",
+        type: 'indicator',
+        mode: 'gauge',
+        gauge: {
+            axis: {range: [null, 9]},
+            bar: {'color': "grey"},
+            steps: [
+                {range: [0, 1], color: '#FAD7A0'},
+                {range: [1, 2], color: '#F8C471'},
+                {range: [2, 3], color: '#F5B041'},
+                {range: [3, 4], color: '#F9E79F'},
+                {range: [4, 5], color: '#F7DC6F'},
+                {range: [5, 6], color: '#F4D03F'},
+                {range: [6, 7], color: '#ABEBC6'},
+                {range: [7, 8], color: '#82E0AA'},
+                {range: [8, 9], color: "#7DCEA0"}
+            ]
+        }
+    };
+
+    var data3 = [trace3];
+
+    // var layout3 = {
+    //     width:
     // };
 
-    // var data3 = [trace3];
-
-    // // var layout3 = {
-    // //     width:
-    // // };
-
-    // Plotly.newPlot("gauge", data3);
+    Plotly.newPlot("gauge", data3);
 
   });
 
